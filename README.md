@@ -16,12 +16,17 @@ Users should be able to:
 <!-- - **Bonus**: If you're building a purely front-end project, use `localStorage` to save the current state in the browser that persists when the browser is refreshed.
 - **Bonus**: Instead of using the `createdAt` strings from the `data.json` file, try using timestamps and dynamically track the time since the comment or reply was posted. -->
 
-### Links
+<br>
+
+## Links
 
 - [Solution URL](https://your-solution-url.com)
 - [Live Site URL](https://your-live-site-url.com)
 
-### Built with
+<br>
+
+
+## Built with
 
 - CSS custom properties
 - Flexbox
@@ -29,17 +34,25 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 
-### What I learned
+<br>
+
+## What I learned
 
 bla bla bla ...
 
-### Continued development
+<br>
+
+## Continued development
 
 bla bla bla ...
+
+<br>
 
 ## Author
 
 - Frontend Mentor - [@developingWeb](https://www.frontendmentor.io/profile/developingWeb)
+
+<br>
 
 ## Acknowledgments
 
