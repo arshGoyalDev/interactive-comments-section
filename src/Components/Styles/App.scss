@@ -1,0 +1,11 @@
+@use "variables" as *;
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0;
+  background-color: $very-light-gray;
+}
