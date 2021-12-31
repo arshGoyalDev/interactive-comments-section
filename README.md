@@ -36,15 +36,15 @@ Users should be able to:
 
 <br>
 
-## What I learned
+<!-- ## What I learned
 
-bla bla bla ...
+bla bla bla ... -->
 
 <br>
 
-## Continued development
+<!-- ## Continued development
 
-bla bla bla ...
+bla bla bla ... -->
 
 <br>
 
@@ -54,6 +54,6 @@ bla bla bla ...
 
 <br>
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
-Someone helped me with xyz things;
+Someone helped me with xyz things; -->
