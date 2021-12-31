@@ -3,3 +3,9 @@
     @content;
   }
 }
+
+@mixin support($value) {
+  @supports (#{$value}) {
+    @content;
+  }
+}

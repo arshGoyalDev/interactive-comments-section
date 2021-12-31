@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as *;
 
 .App {
   min-height: 100vh;
@@ -6,6 +7,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 4rem 0;
+  gap: 15px;
+  padding: 2rem 0;
   background-color: $very-light-gray;
+  
+  @include media-sm() {
+    gap: 20px;
+    padding: 4rem 0;
+  }
 }

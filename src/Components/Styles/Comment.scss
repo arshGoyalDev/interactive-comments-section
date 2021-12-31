@@ -4,7 +4,6 @@
 .comment-container {
   display: flex;
   flex-direction: column;
-  gap: 15px;
   width: 90%;
 
   .comment {
@@ -27,6 +26,8 @@
 
       .plus-btn,
       .minus-btn {
+        background: transparent;
+        border: 0;
         cursor: pointer;
 
         &:hover svg path {
@@ -35,6 +36,7 @@
       }
 
       .minus-btn {
+        margin-top: -6px;
         margin-left: 0.5px;
       }
 
@@ -109,7 +111,7 @@
   .comment--btn {
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 7px;
     margin-left: auto;
 
     button {
@@ -137,8 +139,13 @@
   }
 
   .reply-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     padding-left: 15px;
     border-left: 2px solid $light-gray;
+    margin-left: 15px;
+    gap: 15px;
 
     .comment-container {
       width: 100%;
@@ -165,13 +172,34 @@
 
       &-content {
         width: 97%;
+
+        .replying-to {
+          color: $moderate-blue;
+          font-weight: $fw-bold;
+          display: inline-block;
+          margin-right: 10px;
+        }
       }
 
       &--footer {
         display: none;
       }
     }
+
+    &.gap {
+      gap: 20px;
+    }
+
+    .reply-container {
+      padding-left: 35px;
+      margin-left: 35px;
+      gap: 20px;
+    }
   }
+}
+
+.gap {
+  gap: 15px;
 }
 
 .amyrobson {

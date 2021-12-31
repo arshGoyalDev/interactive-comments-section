@@ -1,11 +1,14 @@
 import react from "react";
-import Comment from "./Comment";
+import Reply from "./Reply";
 
 let ReplyContainer = ({ commentData }) => {
   return (
     <div className="reply-container">
       {commentData.map((data) => (
-        <Comment key={data.id} commentData={data} />
+        <Reply 
+          key={data.id} 
+          commentData={data} 
+        />
       ))}
     </div>
   );

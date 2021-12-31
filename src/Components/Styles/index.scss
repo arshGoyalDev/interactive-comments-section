@@ -1,4 +1,5 @@
 @use "variables" as *;
+@use "mixins" as *;
 
 /* ------------------- */
 /* reset */
@@ -19,18 +20,39 @@ span {
 }
 
 button,
-input {
+input,
+textarea {
   font-family: inherit;
+  font-size: inherit;
 }
 
 /* ------------------- */
 /* body */
 /* ------------------- */
 
+html {
+  @include support("scrollbar-width: thin") {
+    scrollbar-width: thin;
+    scrollbar-color: $grayish-blue $very-light-gray;
+  }
+}
+
 body {
   font-family: $ff-rubik;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $very-light-gray;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $grayish-blue;
+  }
 }
 
 /* ------------------- */

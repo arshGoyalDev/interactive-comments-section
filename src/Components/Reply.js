@@ -1,4 +1,3 @@
-import react, { useState } from "react";
 import "./Styles/Comment.scss";
 import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
@@ -6,9 +5,8 @@ import { ReactComponent as IconReply } from "../Assets/images/icon-reply.svg";
 import { ReactComponent as IconDelete } from "../Assets/images/icon-delete.svg";
 import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import ReplyContainer from "./ReplyContainer";
-import { useEffect } from "react/cjs/react.development";
 
-let Comment = ({ commentData }) => {
+let Reply = ({ commentData }) => {
   let clickHandler = () => {};
 
   return (
@@ -65,7 +63,10 @@ let Comment = ({ commentData }) => {
               </button>
             </div>
           </div>
-          <div className="comment-content">{commentData.content}</div>
+          <div className="comment-content">
+            <div className="replying-to">@{commentData.replyingTo}</div>
+            {commentData.content}
+          </div>
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -123,4 +124,4 @@ let Comment = ({ commentData }) => {
   );
 };
 
-export default Comment;
+export default Reply;
