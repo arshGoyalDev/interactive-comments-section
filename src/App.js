@@ -7,7 +7,7 @@ const App = () => {
   const [comments, updateComments] = useState([]);
 
   const getData = () => {
-    fetch("./data.json", {
+    fetch("./data/data.json", {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -23,12 +23,27 @@ const App = () => {
     getData();
   }, []);
 
+  let addComments = (newComment) => {
+    let updatedComments = [...comments, newComment];
+    updateComments(updatedComments);
+  }
+
+  let updateReplies = (replies, id) => {
+    let updatedComments = [...comments];
+    updatedComments.map((data) => {
+      if (data.id == id) {
+        data.replies = [...replies];
+      };
+    })
+    updateComments(updatedComments);
+  }
+
   return (
     <div className="App">
       {comments.map((data) => (
-        <Comment key={data.id} commentData={data} />
+        <Comment key={ data.id } commentData={ data } updateReplies={ updateReplies } />
       ))}
-      <AddComment />
+      <AddComment buttonValue={ 'send' } addComments={ addComments }  />
     </div>
   );
 };

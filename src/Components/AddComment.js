@@ -1,16 +1,33 @@
 import React, { useState } from "react";
 import "./Styles/AddComment.scss";
 
-const AddComment = () => {
+const AddComment = ({ buttonValue, addComments }) => {
   const [comment, setComment] = useState("");
 
   let changeHandler = (e) => {
     setComment(e.target.value);
   };
 
-  let clickHandler = () => {
-    console.log(comment);
-  };
+  
+  let addComment = () => {
+    if (comment == '' || comment == ' ') return;
+    
+    let newComment = {
+      id: Math.floor(Math.random() * 100) + 5,
+      content: comment,
+      createdAt: new Date(),
+      score: 0,
+      username: 'juliusomo',
+      currentUser: true,
+      replies: [],
+    }
+    
+    addComments(newComment);
+    setComment('');
+  }
+
+  let clickHandler = () => addComment();
+  let keyDownHandler = (e) => {if (e.keyCode == 13) addComment()};
 
   return (
     <div className="add-comment">
@@ -20,12 +37,13 @@ const AddComment = () => {
         placeholder="Add a comment"
         value={comment}
         onChange={changeHandler}
+        onKeyDown={ keyDownHandler }
       ></textarea>
 
       <div className="send-btn-container">
         <div className="profile-pic"></div>
-        <button className="send-btn" onClick={clickHandler}>
-          Send
+        <button className="add-btn" onClick={clickHandler}>
+          { buttonValue }
         </button>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import "./Styles/Comment.scss";
 import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
@@ -6,9 +7,26 @@ import { ReactComponent as IconDelete } from "../Assets/images/icon-delete.svg";
 import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import ReplyContainer from "./ReplyContainer";
 
-let Reply = ({ commentData }) => {
-  let clickHandler = () => {};
+let Reply = ({ commentData, commentPostedTime }) => {
+  
+  const [time, setTime] = useState('');
 
+  // get time from comment posted
+  let createdAt = new Date(commentData.createdAt);
+  let today = new Date();
+  var differenceInTime = today.getTime() - createdAt.getTime();
+  
+  useEffect(() => {
+    setTime(commentPostedTime(differenceInTime));
+  }, [time])
+
+  setInterval(() => {
+    setTime(commentPostedTime(differenceInTime));
+  }, 60000);
+
+  // up vote and down vote
+  let clickHandler = () => {};
+  
   return (
     <div
       className={`comment-container ${
@@ -38,7 +56,7 @@ let Reply = ({ commentData }) => {
           <div className="comment--header">
             <div className={`profile-pic ${commentData.username}`}></div>
             <div className="username">{commentData.username}</div>
-            <div className="comment-posted-time">{commentData.createdAt}</div>
+            <div className="comment-posted-time">{`${time} ago`}</div>
             <div className="comment--btn">
               <button
                 className={`reply-btn ${
