@@ -1,11 +1,12 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./Components/Styles/App.scss";
 import Comment from "./Components/Comment";
 import AddComment from "./Components/AddComment";
-import DeleteModal from "./Components/DeleteModal";
 
 const App = () => {
-
+  
+  const [comments, updateComments] = useState([]);
+  
   const getData = () => {
     fetch("./data/data.json", {
       headers: {
@@ -19,22 +20,25 @@ const App = () => {
       });
   };
 
-  let savedComments =
-    localStorage.getItem("comments") !== null
-      ? JSON.parse(localStorage.getItem("comments"))
-      : getData();
-  const [comments, updateComments] = useState(savedComments);
-
+  useEffect(() => {
+    if (localStorage.getItem('comments') !== null) {
+      updateComments(JSON.parse(localStorage.getItem("comments")))
+    } else {
+      getData();
+    }
+  }, [])
+  
   useEffect(() => {
     localStorage.setItem("comments", JSON.stringify(comments));
   }, [comments]);
+
 
   // add comments
   let addComments = (newComment) => {
     let updatedComments = [...comments, newComment];
     updateComments(updatedComments);
   };
-
+  
   // add replies
   let updateReplies = (replies, id) => {
     let updatedComments = [...comments];
@@ -80,7 +84,6 @@ const App = () => {
         />
       ))}
       <AddComment buttonValue={"send"} addComments={addComments} />
-      <DeleteModal />
     </div>
   );
 };

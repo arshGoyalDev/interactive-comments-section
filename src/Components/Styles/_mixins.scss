@@ -1,5 +1,5 @@
 @mixin media-sm() {
-  @media (min-width: 20em) {
+  @media (min-width: 26.25em) {
     @content;
   }
 }

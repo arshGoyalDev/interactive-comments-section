@@ -1,4 +1,4 @@
-import react from "react";
+import React from "react";
 import Reply from "./Reply";
 
 let ReplyContainer = ({ commentData, commentPostedTime, addReply, editComment }) => {

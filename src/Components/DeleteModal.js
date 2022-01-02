@@ -7,7 +7,7 @@ let DeleteModal = () => {
         <div className='title'>
           Delete comment
         </div>
-        <div className="confirm-message">
+        <div className="confirmation-message">
           Are you sure you want to delete this comment? This will remove the comment and can't be undone.
         </div>
         <div className='btn-container'>
