@@ -9,15 +9,14 @@ import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 
 let Comment = ({ commentData, updateReplies }) => {
-  
   const [replying, setReplying] = useState(false);
-  const [time, setTime] = useState('');
+  const [time, setTime] = useState("");
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
   let today = new Date();
   var differenceInTime = today.getTime() - createdAt.getTime();
-  
+
   function commentPostedTime(timeInMileSec) {
     let sec = (timeInMileSec / 1000).toFixed(0);
     let min = (timeInMileSec / (1000 * 60)).toFixed(0);
@@ -28,7 +27,7 @@ let Comment = ({ commentData, updateReplies }) => {
     let years = (timeInMileSec / (1000 * 60 * 60 * 24 * 12)).toFixed(0);
 
     if (sec < 60) {
-      return 'some seconds';
+      return "seconds";
     } else if (min < 60) {
       return min + " mins";
     } else if (hrs < 24) {
@@ -38,36 +37,35 @@ let Comment = ({ commentData, updateReplies }) => {
     } else if (weeks < 4) {
       return weeks + " weeks";
     } else if (months < 12) {
-      return months + ' months';
+      return months + " months";
     } else {
-      return years + ' year';
+      return years + " year";
     }
   }
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-  }, [time])
+  }, [time]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
   }, 60000);
-  
+
   // up vote and down vote
   let clickHandler = () => {};
-  
+
   // adding reply
   let counter = false;
   let showAddComment = () => {
     counter ? setReplying(false) : setReplying(true);
     counter = true;
-  }
+  };
 
-  let addReply = (newReply) => {
-    newReply.replyingTo = commentData.username;
+  let addReply = (newReply, replyingTo) => {
     let replies = [...commentData.replies, newReply];
     updateReplies(replies, commentData.id);
     setReplying(false);
-  }
+  };
 
   return (
     <div
@@ -79,7 +77,7 @@ let Comment = ({ commentData, updateReplies }) => {
         <div className="comment--votes">
           <button
             className="plus-btn"
-            onClick={ clickHandler }
+            onClick={clickHandler}
             aria-label="plus-btn"
           >
             <IconPlus />
@@ -87,7 +85,7 @@ let Comment = ({ commentData, updateReplies }) => {
           <div className="votes-counter">{commentData.score}</div>
           <button
             className="minus-btn"
-            onClick={ clickHandler }
+            onClick={clickHandler}
             aria-label="minus-btn"
           >
             <IconMinus />
@@ -97,14 +95,15 @@ let Comment = ({ commentData, updateReplies }) => {
         <div className="comment--body">
           <div className="comment--header">
             <div className={`profile-pic ${commentData.username}`}></div>
-            <div className="username">{ commentData.username }</div>
-            <div className="comment-posted-time">{ `${time} ago` }</div>
+            <div className="username">{commentData.username}</div>
+            {commentData.currentUser ? <div className="you-tag">you</div> : ""}
+            <div className="comment-posted-time">{`${time} ago`}</div>
             <div className="comment--btn">
               <button
                 className={`reply-btn ${
                   !commentData.currentUser ? "" : "display--none"
                 }`}
-                onClick={ showAddComment }
+                onClick={showAddComment}
               >
                 <IconReply /> Reply
               </button>
@@ -124,7 +123,7 @@ let Comment = ({ commentData, updateReplies }) => {
               </button>
             </div>
           </div>
-          <div className="comment-content">{ commentData.content }</div>
+          <div className="comment-content">{commentData.content}</div>
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -135,7 +134,7 @@ let Comment = ({ commentData, updateReplies }) => {
             >
               <IconPlus />
             </button>
-            <div className="votes-counter">{ commentData.score }</div>
+            <div className="votes-counter">{commentData.score}</div>
             <button
               className="minus-btn"
               onClick={clickHandler}
@@ -149,7 +148,7 @@ let Comment = ({ commentData, updateReplies }) => {
               className={`reply-btn ${
                 !commentData.currentUser ? "" : "display--none"
               }`}
-              onClick={ showAddComment }
+              onClick={showAddComment}
             >
               <IconReply /> Reply
             </button>
@@ -171,14 +170,23 @@ let Comment = ({ commentData, updateReplies }) => {
         </div>
       </div>
 
-      {replying ? <AddComment buttonValue={ "reply" } addComments={ addReply } /> : '' }
+      {replying ? (
+        <AddComment
+          buttonValue={"reply"}
+          addComments={addReply}
+          replyingTo={commentData.username}
+        />
+      ) : (
+        ""
+      )}
       {commentData.replies == [] ? (
         ""
       ) : (
         <ReplyContainer
           key={commentData.replies.id}
           commentData={commentData.replies}
-          commentPostedTime={ commentPostedTime }
+          commentPostedTime={commentPostedTime}
+          addReply={addReply}
         />
       )}
     </div>

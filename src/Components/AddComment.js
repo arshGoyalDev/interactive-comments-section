@@ -1,33 +1,34 @@
 import React, { useState } from "react";
 import "./Styles/AddComment.scss";
 
-const AddComment = ({ buttonValue, addComments }) => {
-  const [comment, setComment] = useState("");
+const AddComment = ({ buttonValue, addComments, replyingTo }) => {
+  const [comment, setComment] = useState(replyingTo ? `@${replyingTo}, ` : "");
 
   let changeHandler = (e) => {
     setComment(e.target.value);
   };
 
-  
   let addComment = () => {
-    if (comment == '' || comment == ' ') return;
-    
+    if (comment == "" || comment == " ") return;
+
     let newComment = {
       id: Math.floor(Math.random() * 100) + 5,
       content: comment,
       createdAt: new Date(),
       score: 0,
-      username: 'juliusomo',
+      username: "juliusomo",
       currentUser: true,
       replies: [],
-    }
-    
+    };
+
     addComments(newComment);
-    setComment('');
-  }
+    setComment("");
+  };
 
   let clickHandler = () => addComment();
-  let keyDownHandler = (e) => {if (e.keyCode == 13) addComment()};
+  let keyDownHandler = (e) => {
+    if (e.keyCode == 13) addComment();
+  };
 
   return (
     <div className="add-comment">
@@ -37,13 +38,12 @@ const AddComment = ({ buttonValue, addComments }) => {
         placeholder="Add a comment"
         value={comment}
         onChange={changeHandler}
-        onKeyDown={ keyDownHandler }
-      ></textarea>
-
+        onKeyDown={keyDownHandler}
+      />
       <div className="send-btn-container">
         <div className="profile-pic"></div>
         <button className="add-btn" onClick={clickHandler}>
-          { buttonValue }
+          {buttonValue}
         </button>
       </div>
     </div>

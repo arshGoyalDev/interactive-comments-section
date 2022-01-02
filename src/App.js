@@ -4,8 +4,6 @@ import Comment from "./Components/Comment";
 import AddComment from "./Components/AddComment";
 
 const App = () => {
-  const [comments, updateComments] = useState([]);
-
   const getData = () => {
     fetch("./data/data.json", {
       headers: {
@@ -19,31 +17,41 @@ const App = () => {
       });
   };
 
+  let savedComments =
+    localStorage.getItem("comments") !== null
+      ? JSON.parse(localStorage.getItem("comments"))
+      : getData();
+  const [comments, updateComments] = useState(savedComments);
+
   useEffect(() => {
-    getData();
-  }, []);
+    localStorage.setItem("comments", JSON.stringify(comments));
+  }, [comments]);
 
   let addComments = (newComment) => {
     let updatedComments = [...comments, newComment];
     updateComments(updatedComments);
-  }
+  };
 
   let updateReplies = (replies, id) => {
     let updatedComments = [...comments];
     updatedComments.map((data) => {
       if (data.id == id) {
         data.replies = [...replies];
-      };
-    })
+      }
+    });
     updateComments(updatedComments);
-  }
+  };
 
   return (
     <div className="App">
       {comments.map((data) => (
-        <Comment key={ data.id } commentData={ data } updateReplies={ updateReplies } />
+        <Comment
+          key={data.id}
+          commentData={data}
+          updateReplies={updateReplies}
+        />
       ))}
-      <AddComment buttonValue={ 'send' } addComments={ addComments }  />
+      <AddComment buttonValue={"send"} addComments={addComments} />
     </div>
   );
 };

@@ -5,20 +5,21 @@ import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
 import { ReactComponent as IconReply } from "../Assets/images/icon-reply.svg";
 import { ReactComponent as IconDelete } from "../Assets/images/icon-delete.svg";
 import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
+import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 
-let Reply = ({ commentData, commentPostedTime }) => {
-  
-  const [time, setTime] = useState('');
+let Reply = ({ commentData, commentPostedTime, addNewReply }) => {
+  const [replying, setReplying] = useState(false);
+  const [time, setTime] = useState("");
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
   let today = new Date();
   var differenceInTime = today.getTime() - createdAt.getTime();
-  
+
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-  }, [time])
+  }, [time]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
@@ -26,7 +27,34 @@ let Reply = ({ commentData, commentPostedTime }) => {
 
   // up vote and down vote
   let clickHandler = () => {};
-  
+
+  // adding reply
+  let counter = false;
+  let showAddComment = () => {
+    counter ? setReplying(false) : setReplying(true);
+    counter = true;
+  };
+
+  let addReply = (newReply) => {
+    let updatedReplies = [...commentData.replies, newReply];
+    addNewReply(newReply);
+    setReplying(false);
+  };
+
+  let content = () => {
+    let text = commentData.content.trim().split(" ");
+    // text.split(',');
+    let firstWord = text.shift().split(",");
+    return (
+      <div className="comment-content">
+        <span className="replyingTo">{firstWord}</span>
+        {text.join(" ")}
+      </div>
+    );
+  };
+  // $("#firstWord").html(function(){
+  // });
+
   return (
     <div
       className={`comment-container ${
@@ -56,12 +84,14 @@ let Reply = ({ commentData, commentPostedTime }) => {
           <div className="comment--header">
             <div className={`profile-pic ${commentData.username}`}></div>
             <div className="username">{commentData.username}</div>
+            {commentData.currentUser ? <div className="you-tag">you</div> : ""}
             <div className="comment-posted-time">{`${time} ago`}</div>
             <div className="comment--btn">
               <button
                 className={`reply-btn ${
                   !commentData.currentUser ? "" : "display--none"
                 }`}
+                onClick={showAddComment}
               >
                 <IconReply /> Reply
               </button>
@@ -81,10 +111,7 @@ let Reply = ({ commentData, commentPostedTime }) => {
               </button>
             </div>
           </div>
-          <div className="comment-content">
-            <div className="replying-to">@{commentData.replyingTo}</div>
-            {commentData.content}
-          </div>
+          {content()}
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -109,6 +136,7 @@ let Reply = ({ commentData, commentPostedTime }) => {
               className={`reply-btn ${
                 !commentData.currentUser ? "" : "display--none"
               }`}
+              onClick={showAddComment}
             >
               <IconReply /> Reply
             </button>
@@ -130,14 +158,23 @@ let Reply = ({ commentData, commentPostedTime }) => {
         </div>
       </div>
 
-      {commentData.replies == [] ? (
-        ""
-      ) : (
-        <ReplyContainer
-          key={commentData.replies.id}
-          commentData={commentData.replies}
+      {replying ? (
+        <AddComment
+          buttonValue={"reply"}
+          addComments={addReply}
+          replyingTo={commentData.username}
         />
+      ) : (
+        ""
       )}
+      {commentData.replies.map((data) => (
+        <Reply
+          key={data.id}
+          commentData={data}
+          commentPostedTime={commentPostedTime}
+          addReply={addReply}
+        />
+      ))}
     </div>
   );
 };
