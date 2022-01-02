@@ -62,3 +62,8 @@ body {
 .display--none {
   display: none !important;
 }
+
+::selection{
+  color: $white;
+  background: $moderate-blue;
+}

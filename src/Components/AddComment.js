@@ -8,7 +8,7 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
     setComment(e.target.value);
   };
 
-  let addComment = () => {
+  let clickHandler = () => {
     if (comment == "" || comment == " ") return;
 
     let newComment = {
@@ -25,11 +25,6 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
     setComment("");
   };
 
-  let clickHandler = () => addComment();
-  let keyDownHandler = (e) => {
-    if (e.keyCode == 13) addComment();
-  };
-
   return (
     <div className="add-comment">
       <div className="profile-pic"></div>
@@ -38,7 +33,6 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
         placeholder="Add a comment"
         value={comment}
         onChange={changeHandler}
-        onKeyDown={keyDownHandler}
       />
       <div className="send-btn-container">
         <div className="profile-pic"></div>

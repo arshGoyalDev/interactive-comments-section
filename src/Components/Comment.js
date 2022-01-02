@@ -8,9 +8,11 @@ import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 
-let Comment = ({ commentData, updateReplies }) => {
+let Comment = ({ commentData, updateReplies, editComment }) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [content, setContent] = useState(commentData.content);
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
@@ -61,16 +63,26 @@ let Comment = ({ commentData, updateReplies }) => {
     counter = true;
   };
 
-  let addReply = (newReply, replyingTo) => {
+  let addReply = (newReply) => {
     let replies = [...commentData.replies, newReply];
     updateReplies(replies, commentData.id);
     setReplying(false);
   };
 
+  // edit comment
+  let showEditComment = () => {
+    setEditing(true);
+  };
+
+  let updateComment = () => {
+    editComment(content, commentData.id, "comment");
+    setEditing(false);
+  }
+
   return (
     <div
       className={`comment-container ${
-        commentData.replies[0] !== undefined ? "gap" : ""
+        commentData.replies[0] !== undefined ? "reply-container-gap" : ""
       }`}
     >
       <div className="comment">
@@ -118,12 +130,24 @@ let Comment = ({ commentData, updateReplies }) => {
                 className={`edit-btn ${
                   commentData.currentUser ? "" : "display--none"
                 }`}
+                onClick={showEditComment}
               >
                 <IconEdit /> Edit
               </button>
             </div>
           </div>
-          <div className="comment-content">{commentData.content}</div>
+          {!editing ? (
+            <div className="comment-content">{commentData.content}</div>
+          ) : (
+            <textarea
+              className="content-edit-box"
+              value={content}
+              onChange={(e) => {
+                setContent(e.target.value);
+              }}
+            />
+          )}
+          {editing ? <button className="update-btn" onClick={ updateComment }>update</button> : ""}
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -163,6 +187,7 @@ let Comment = ({ commentData, updateReplies }) => {
               className={`edit-btn ${
                 commentData.currentUser ? "" : "display--none"
               }`}
+              onClick={showEditComment}
             >
               <IconEdit /> Edit
             </button>
@@ -187,6 +212,7 @@ let Comment = ({ commentData, updateReplies }) => {
           commentData={commentData.replies}
           commentPostedTime={commentPostedTime}
           addReply={addReply}
+          editComment={editComment}
         />
       )}
     </div>

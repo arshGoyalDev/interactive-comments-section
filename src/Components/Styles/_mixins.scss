@@ -1,4 +1,11 @@
 @mixin media-sm() {
+  @media (min-width: 20em) {
+    @content;
+  }
+}
+
+
+@mixin media-md() {
   @media (min-width: 47em) {
     @content;
   }

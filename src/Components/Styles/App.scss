@@ -11,7 +11,7 @@
   padding: 2rem 0;
   background-color: $very-light-gray;
   
-  @include media-sm() {
+  @include media-md() {
     gap: 20px;
     padding: 4rem 0;
   }

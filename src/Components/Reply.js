@@ -8,14 +8,17 @@ import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 
-let Reply = ({ commentData, commentPostedTime, addNewReply }) => {
+let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [content, setContent] = useState(commentData.content);
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
   let today = new Date();
   var differenceInTime = today.getTime() - createdAt.getTime();
+
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
@@ -36,24 +39,41 @@ let Reply = ({ commentData, commentPostedTime, addNewReply }) => {
   };
 
   let addReply = (newReply) => {
-    let updatedReplies = [...commentData.replies, newReply];
     addNewReply(newReply);
     setReplying(false);
   };
 
-  let content = () => {
+  let commentContent = () => {
     let text = commentData.content.trim().split(" ");
-    // text.split(',');
     let firstWord = text.shift().split(",");
+
     return (
-      <div className="comment-content">
-        <span className="replyingTo">{firstWord}</span>
-        {text.join(" ")}
-      </div>
+      !editing ? (
+        <div className="comment-content">
+          <span className="replyingTo">{firstWord}</span>
+          {text.join(" ")}
+          </div>
+      ) : (
+        <textarea
+          className="content-edit-box"
+          value={content}
+          onChange={(e) => {
+            setContent(e.target.value);
+          }}
+        />
+      )
     );
   };
-  // $("#firstWord").html(function(){
-  // });
+
+  // edit comment
+  let showEditComment = () => {
+    setEditing(true);
+  };
+
+  let updateComment = () => {
+    editComment(content, commentData.id, "reply");
+    setEditing(false);
+  }
 
   return (
     <div
@@ -106,12 +126,14 @@ let Reply = ({ commentData, commentPostedTime, addNewReply }) => {
                 className={`edit-btn ${
                   commentData.currentUser ? "" : "display--none"
                 }`}
+                onClick={showEditComment}
               >
                 <IconEdit /> Edit
               </button>
             </div>
           </div>
-          {content()}
+          {commentContent()}
+          {editing ? <button className="update-btn" onClick={ updateComment }>update</button> : ""}
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -151,6 +173,7 @@ let Reply = ({ commentData, commentPostedTime, addNewReply }) => {
               className={`edit-btn ${
                 commentData.currentUser ? "" : "display--none"
               }`}
+              onClick={showEditComment}
             >
               <IconEdit /> Edit
             </button>

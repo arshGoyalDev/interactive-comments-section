@@ -1,7 +1,7 @@
 import react from "react";
 import Reply from "./Reply";
 
-let ReplyContainer = ({ commentData, commentPostedTime, addReply }) => {
+let ReplyContainer = ({ commentData, commentPostedTime, addReply, editComment }) => {
   return (
     <div className="reply-container">
       {commentData.map((data) => (
@@ -10,6 +10,7 @@ let ReplyContainer = ({ commentData, commentPostedTime, addReply }) => {
           commentData={data}
           commentPostedTime={commentPostedTime}
           addNewReply={addReply}
+          editComment={editComment}
         />
       ))}
     </div>
