@@ -63,7 +63,11 @@ body {
   display: none !important;
 }
 
-::selection{
+.overflow--hidden {
+  overflow-y: hidden;
+}
+
+::selection {
   color: $white;
   background: $grayish-blue;
 }

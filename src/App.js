@@ -4,9 +4,9 @@ import Comment from "./Components/Comment";
 import AddComment from "./Components/AddComment";
 
 const App = () => {
-  
   const [comments, updateComments] = useState([]);
-  
+  const [deleteModalState, setDeleteModalState] = useState(false);
+
   const getData = () => {
     fetch("./data/data.json", {
       headers: {
@@ -21,24 +21,26 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('comments') !== null) {
-      updateComments(JSON.parse(localStorage.getItem("comments")))
+    if (localStorage.getItem("comments") !== null) {
+      updateComments(JSON.parse(localStorage.getItem("comments")));
     } else {
       getData();
     }
-  }, [])
-  
+  }, []);
+
   useEffect(() => {
     localStorage.setItem("comments", JSON.stringify(comments));
-  }, [comments]);
-
+    deleteModalState
+      ? document.body.classList.add("overflow--hidden")
+      : document.body.classList.remove("overflow--hidden");
+  }, [comments, deleteModalState]);
 
   // add comments
   let addComments = (newComment) => {
     let updatedComments = [...comments, newComment];
     updateComments(updatedComments);
   };
-  
+
   // add replies
   let updateReplies = (replies, id) => {
     let updatedComments = [...comments];
@@ -61,17 +63,36 @@ const App = () => {
         }
       });
     } else if (type == "reply") {
-        updatedComments.forEach((comment) => {
-          comment.replies.map((data) => {
-            if (data.id == id) {
-              data.content = content;
-            }
-          })
-        })
+      updatedComments.forEach((comment) => {
+        comment.replies.map((data) => {
+          if (data.id == id) {
+            data.content = content;
+          }
+        });
+      });
     }
 
     updateComments(updatedComments);
-  }
+  };
+
+  // delete comment
+  let commentDelete = (id, type, parentComment) => {
+    let updatedComments = [...comments];
+    let updatedReplies = [];
+
+    if (type == "comment") {
+      updatedComments = updatedComments.filter((data) => data.id !== id);
+    } else if (type == "reply") {
+      comments.forEach((comment) => {
+        if (comment.id == parentComment) {
+          updatedReplies = comment.replies.filter((data) => data.id !== id);
+          comment.replies = updatedReplies;
+        }
+      });
+    }
+
+    updateComments(updatedComments);
+  };
 
   return (
     <div className="App">
@@ -80,7 +101,9 @@ const App = () => {
           key={data.id}
           commentData={data}
           updateReplies={updateReplies}
-          editComment={ editComment }
+          editComment={editComment}
+          commentDelete={commentDelete}
+          setDeleteModalState={setDeleteModalState}
         />
       ))}
       <AddComment buttonValue={"send"} addComments={addComments} />

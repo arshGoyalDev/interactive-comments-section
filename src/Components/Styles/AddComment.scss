@@ -9,6 +9,7 @@
   padding: 20px;
   background: $white;
   border-radius: 10px;
+  animation: come-in 1.5s ease-in-out;
 
   .profile-pic {
     width: 30px;
@@ -96,7 +97,7 @@
   }
 }
 
-@keyframes come-out {
+@keyframes come-in {
   0%{
     opacity: 0;
     transform: translateY(-100%);

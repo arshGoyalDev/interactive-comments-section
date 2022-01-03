@@ -6,18 +6,26 @@ import { ReactComponent as IconReply } from "../Assets/images/icon-reply.svg";
 import { ReactComponent as IconDelete } from "../Assets/images/icon-delete.svg";
 import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import AddComment from "./AddComment";
+import DeleteModal from "./DeleteModal";
 
-let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
+let Reply = ({
+  commentData,
+  commentPostedTime,
+  addNewReply,
+  editComment,
+  deleteComment,
+  setDeleteModalState,
+}) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
+  const [deleting, setDeleting] = useState(false);
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
   let today = new Date();
   var differenceInTime = today.getTime() - createdAt.getTime();
-
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
@@ -46,21 +54,19 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
     let text = commentData.content.trim().split(" ");
     let firstWord = text.shift().split(",");
 
-    return (
-      !editing ? (
-        <div className="comment-content">
-          <span className="replyingTo">{firstWord}</span>
-          {text.join(" ")}
-          </div>
-      ) : (
-        <textarea
-          className="content-edit-box"
-          value={content}
-          onChange={(e) => {
-            setContent(e.target.value);
-          }}
-        />
-      )
+    return !editing ? (
+      <div className="comment-content">
+        <span className="replyingTo">{firstWord}</span>
+        {text.join(" ")}
+      </div>
+    ) : (
+      <textarea
+        className="content-edit-box"
+        value={content}
+        onChange={(e) => {
+          setContent(e.target.value);
+        }}
+      />
     );
   };
 
@@ -72,7 +78,18 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
   let updateComment = () => {
     editComment(content, commentData.id, "reply");
     setEditing(false);
-  }
+  };
+
+  // delete comment
+  let showDeleteModal = () => {
+    setDeleting(true);
+    setDeleteModalState(true);
+  };
+
+  let deleteReply = () => {
+    deleteComment(commentData.id, "reply");
+    setDeleting(false);
+  };
 
   return (
     <div
@@ -118,6 +135,7 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
                 className={`delete-btn ${
                   commentData.currentUser ? "" : "display--none"
                 }`}
+                onClick={showDeleteModal}
               >
                 <IconDelete /> Delete
               </button>
@@ -132,7 +150,13 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
             </div>
           </div>
           {commentContent()}
-          {editing ? <button className="update-btn" onClick={ updateComment }>update</button> : ""}
+          {editing ? (
+            <button className="update-btn" onClick={updateComment}>
+              update
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -165,6 +189,7 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
               className={`delete-btn ${
                 commentData.currentUser ? "" : "display--none"
               }`}
+              onClick={showDeleteModal}
             >
               <IconDelete /> Delete
             </button>
@@ -197,6 +222,16 @@ let Reply = ({ commentData, commentPostedTime, addNewReply, editComment }) => {
           addReply={addReply}
         />
       ))}
+
+      {deleting ? (
+        <DeleteModal
+          setDeleting={setDeleting}
+          deleteComment={deleteReply}
+          setDeleteModalState={setDeleteModalState}
+        />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

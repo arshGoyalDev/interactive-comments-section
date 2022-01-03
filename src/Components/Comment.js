@@ -7,12 +7,20 @@ import { ReactComponent as IconDelete } from "../Assets/images/icon-delete.svg";
 import { ReactComponent as IconEdit } from "../Assets/images/icon-edit.svg";
 import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
+import DeleteModal from "./DeleteModal";
 
-let Comment = ({ commentData, updateReplies, editComment }) => {
+let Comment = ({
+  commentData,
+  updateReplies,
+  editComment,
+  commentDelete,
+  setDeleteModalState,
+}) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
+  const [deleting, setDeleting] = useState(false);
 
   // get time from comment posted
   let createdAt = new Date(commentData.createdAt);
@@ -77,7 +85,20 @@ let Comment = ({ commentData, updateReplies, editComment }) => {
   let updateComment = () => {
     editComment(content, commentData.id, "comment");
     setEditing(false);
-  }
+  };
+
+  // delete comment
+  let showDeleteModal = () => {
+    setDeleting(true);
+    setDeleteModalState(true);
+  };
+
+  let deleteComment = (id, type) => {
+    let finalType = type !== undefined ? type : "comment";
+    let finalId = id !== undefined ? id : commentData.id;
+    commentDelete(finalId, finalType, commentData.id);
+    setDeleting(false);
+  };
 
   return (
     <div
@@ -123,6 +144,7 @@ let Comment = ({ commentData, updateReplies, editComment }) => {
                 className={`delete-btn ${
                   commentData.currentUser ? "" : "display--none"
                 }`}
+                onClick={showDeleteModal}
               >
                 <IconDelete /> Delete
               </button>
@@ -147,7 +169,13 @@ let Comment = ({ commentData, updateReplies, editComment }) => {
               }}
             />
           )}
-          {editing ? <button className="update-btn" onClick={ updateComment }>update</button> : ""}
+          {editing ? (
+            <button className="update-btn" onClick={updateComment}>
+              update
+            </button>
+          ) : (
+            ""
+          )}
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
@@ -180,6 +208,7 @@ let Comment = ({ commentData, updateReplies, editComment }) => {
               className={`delete-btn ${
                 commentData.currentUser ? "" : "display--none"
               }`}
+              onClick={showDeleteModal}
             >
               <IconDelete /> Delete
             </button>
@@ -213,7 +242,19 @@ let Comment = ({ commentData, updateReplies, editComment }) => {
           commentPostedTime={commentPostedTime}
           addReply={addReply}
           editComment={editComment}
+          deleteComment={deleteComment}
+          setDeleteModalState={setDeleteModalState}
         />
+      )}
+
+      {deleting ? (
+        <DeleteModal
+          setDeleting={setDeleting}
+          deleteComment={deleteComment}
+          setDeleteModalState={setDeleteModalState}
+        />
+      ) : (
+        ""
       )}
     </div>
   );

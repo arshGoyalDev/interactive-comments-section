@@ -13,7 +13,7 @@
     padding: 15px;
     border-radius: 10px;
     gap: 15px;
-    animation: come-out 1s ease-in;
+    animation: come-in 1s ease-in;
 
     &--votes {
       display: none;
@@ -212,7 +212,7 @@
       width: 100%;
       
       .comment{
-        animation: come-out 1.5s ease-in-out;
+        animation: come-in 1.5s ease-in-out;
       }
     }
   }
@@ -220,6 +220,7 @@
   .add-comment {
     width: 100%;
     margin-top: 5px;
+    animation-duration: 0.5s;
   }
 
   @include media-md() {
@@ -292,7 +293,7 @@
 }
 
 
-@keyframes come-out {
+@keyframes come-in {
   0%{
     opacity: 0;
     transform: translateY(-100%);
