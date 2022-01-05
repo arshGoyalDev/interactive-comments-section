@@ -3,6 +3,7 @@ import Reply from "./Reply";
 
 let ReplyContainer = ({
   commentData,
+  updateScore,
   commentPostedTime,
   addReply,
   editComment,
@@ -15,6 +16,7 @@ let ReplyContainer = ({
         <Reply
           key={data.id}
           commentData={data}
+          updateScore={updateScore}
           commentPostedTime={commentPostedTime}
           addNewReply={addReply}
           editComment={editComment}

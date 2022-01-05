@@ -11,6 +11,7 @@ import DeleteModal from "./DeleteModal";
 let Reply = ({
   commentData,
   commentPostedTime,
+  updateScore,
   addNewReply,
   editComment,
   deleteComment,
@@ -18,6 +19,8 @@ let Reply = ({
 }) => {
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
+  const [vote, setVoted] = useState(false);
+  const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
@@ -29,15 +32,31 @@ let Reply = ({
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-  }, [time]);
+    localStorage.setItem('voteState', vote);
+  }, [differenceInTime]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
   }, 60000);
 
   // up vote and down vote
-  let clickHandler = () => {};
+  let upVote = () => {
+    if (vote === false) {
+      let n = score + 1;
+      setScore(n);
+      updateScore(n, commentData.id, "reply");
+      setVoted(true);
+    }
+  }
 
+  let downVote = () => {
+    if (vote === true) {
+      let n = score - 1;
+      setScore(n);
+      updateScore(n, commentData.id, 'reply');
+      setVoted(false);
+   }
+  }
   // adding reply
   let counter = false;
   let showAddComment = () => {
@@ -101,7 +120,7 @@ let Reply = ({
         <div className="comment--votes">
           <button
             className="plus-btn"
-            onClick={clickHandler}
+            onClick={upVote}
             aria-label="plus-btn"
           >
             <IconPlus />
@@ -109,7 +128,7 @@ let Reply = ({
           <div className="votes-counter">{commentData.score}</div>
           <button
             className="minus-btn"
-            onClick={clickHandler}
+            onClick={downVote}
             aria-label="minus-btn"
           >
             <IconMinus />
@@ -162,7 +181,7 @@ let Reply = ({
           <div className="comment--votes">
             <button
               className="plus-btn"
-              onClick={clickHandler}
+              onClick={upVote}
               aria-label="plus-btn"
             >
               <IconPlus />
@@ -170,7 +189,7 @@ let Reply = ({
             <div className="votes-counter">{commentData.score}</div>
             <button
               className="minus-btn"
-              onClick={clickHandler}
+              onClick={downVote}
               aria-label="minus-btn"
             >
               <IconMinus />

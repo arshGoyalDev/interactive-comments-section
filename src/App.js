@@ -39,17 +39,17 @@ const App = () => {
   let updateScore = (score, id, type) => {
     let updatedComments = [...comments];
 
-    if (type == "comment") {
+    if (type === "comment") {
       updatedComments.map((data) => {
-        if (data.id == id) {
+        if (data.id === id) {
           // console.log(data.score, score)
           data.score = score;
         }
       })
-    } else if (type == 'reply') {
+    } else if (type === 'reply') {
       updatedComments.forEach((comment) => {
         comment.replies.map((data) => {
-          if (data.id == id) {
+          if (data.id === id) {
             data.score = score;
           }
         })
@@ -68,7 +68,7 @@ const App = () => {
   let updateReplies = (replies, id) => {
     let updatedComments = [...comments];
     updatedComments.map((data) => {
-      if (data.id == id) {
+      if (data.id === id) {
         data.replies = [...replies];
       }
     });
@@ -79,16 +79,16 @@ const App = () => {
   let editComment = (content, id, type) => {
     let updatedComments = [...comments];
 
-    if (type == "comment") {
+    if (type === "comment") {
       updatedComments.map((data) => {
-        if (data.id == id) {
+        if (data.id === id) {
           data.content = content;
         }
       });
-    } else if (type == "reply") {
+    } else if (type === "reply") {
       updatedComments.forEach((comment) => {
         comment.replies.map((data) => {
-          if (data.id == id) {
+          if (data.id === id) {
             data.content = content;
           }
         });
@@ -103,11 +103,11 @@ const App = () => {
     let updatedComments = [...comments];
     let updatedReplies = [];
 
-    if (type == "comment") {
+    if (type === "comment") {
       updatedComments = updatedComments.filter((data) => data.id !== id);
-    } else if (type == "reply") {
+    } else if (type === "reply") {
       comments.forEach((comment) => {
-        if (comment.id == parentComment) {
+        if (comment.id === parentComment) {
           updatedReplies = comment.replies.filter((data) => data.id !== id);
           comment.replies = updatedReplies;
         }

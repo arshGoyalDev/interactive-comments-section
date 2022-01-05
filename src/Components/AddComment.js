@@ -9,7 +9,7 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
   };
 
   let clickHandler = () => {
-    if (comment == "" || comment == " ") return;
+    if (comment === "" || comment === " ") return;
 
     let newComment = {
       id: Math.floor(Math.random() * 100) + 5,

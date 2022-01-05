@@ -60,7 +60,7 @@ let Comment = ({
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
     localStorage.setItem('voteState', vote);
-  }, [time, vote]);
+  }, [differenceInTime, vote]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
@@ -254,12 +254,13 @@ let Comment = ({
       ) : (
         ""
       )}
-      {commentData.replies == [] ? (
+      {commentData.replies === [] ? (
         ""
       ) : (
         <ReplyContainer
           key={commentData.replies.id}
           commentData={commentData.replies}
+          updateScore={updateScore}
           commentPostedTime={commentPostedTime}
           addReply={addReply}
           editComment={editComment}
