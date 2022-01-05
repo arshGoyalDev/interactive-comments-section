@@ -117,7 +117,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <main className="App">
       {comments.map((data) => (
         <Comment
           key={data.id}
@@ -130,7 +130,7 @@ const App = () => {
         />
       ))}
       <AddComment buttonValue={"send"} addComments={addComments} />
-    </div>
+    </main>
   );
 };
 
