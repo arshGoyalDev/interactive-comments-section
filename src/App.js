@@ -21,11 +21,9 @@ const App = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("comments") !== null) {
-      updateComments(JSON.parse(localStorage.getItem("comments")));
-    } else {
-      getData();
-    }
+    localStorage.getItem("comments") !== null
+      ? updateComments(JSON.parse(localStorage.getItem("comments")))
+      : getData();
   }, []);
 
   useEffect(() => {
