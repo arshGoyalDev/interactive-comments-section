@@ -118,7 +118,6 @@ const App = () => {
 
   return (
     <main className="App">
-      <h1 className="display--none">Just to fix accessability issue</h1>
       {comments.map((data) => (
         <Comment
           key={data.id}
