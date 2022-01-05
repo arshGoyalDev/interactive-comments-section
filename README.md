@@ -2,7 +2,11 @@
 
 This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-![](./screenshot.jpg)
+<br>
+
+![](./src/Assets/images/screenshot.png)
+
+<br>
 
 ## The challenge
 
@@ -24,7 +28,7 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Built with
 
 - CSS custom properties
-- Flexbox
+- Flex-box
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 
@@ -36,18 +40,13 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 
 <br>
 
-<!-- ## Continued development
+## Continued development
 
-bla bla bla ... -->
+- I still want to add the feature : 
+  - which sort the comments the comment of the basis of their votes
 
 <br>
 
 ## Author
 
 - Frontend Mentor - [@developingWeb](https://www.frontendmentor.io/profile/developingWeb)
-
-<br>
-
-<!-- ## Acknowledgments
-
-Someone helped me with xyz things; -->

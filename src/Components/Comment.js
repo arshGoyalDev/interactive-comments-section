@@ -11,13 +11,17 @@ import DeleteModal from "./DeleteModal";
 
 let Comment = ({
   commentData,
+  updateScore,
   updateReplies,
   editComment,
   commentDelete,
   setDeleteModalState,
 }) => {
+
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
+  const [vote, setVoted] = useState(false);
+  const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
@@ -55,14 +59,31 @@ let Comment = ({
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-  }, [time]);
+    localStorage.setItem('voteState', vote);
+  }, [time, vote]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
   }, 60000);
 
   // up vote and down vote
-  let clickHandler = () => {};
+  let upVote = () => {
+    if (vote === false) {
+      let n = score + 1;
+      setScore(n);
+      updateScore(n, commentData.id, "comment");
+      setVoted(true);
+    }
+  }
+
+  let downVote = () => {
+    if (vote === true) {
+      let n = score - 1;
+      setScore(n);
+      updateScore(n, commentData.id, 'comment');
+      setVoted(false);
+   }
+  }
 
   // adding reply
   let counter = false;
@@ -110,15 +131,15 @@ let Comment = ({
         <div className="comment--votes">
           <button
             className="plus-btn"
-            onClick={clickHandler}
+            onClick={upVote}
             aria-label="plus-btn"
           >
             <IconPlus />
           </button>
-          <div className="votes-counter">{commentData.score}</div>
+          <div className="votes-counter">{score}</div>
           <button
             className="minus-btn"
-            onClick={clickHandler}
+            onClick={downVote}
             aria-label="minus-btn"
           >
             <IconMinus />
@@ -181,18 +202,18 @@ let Comment = ({
           <div className="comment--votes">
             <button
               className="plus-btn"
-              onClick={clickHandler}
+              onClick={upVote}
               aria-label="plus-btn"
             >
-              <IconPlus />
+            <IconPlus />
             </button>
-            <div className="votes-counter">{commentData.score}</div>
+            <div className="votes-counter">{score}</div>
             <button
               className="minus-btn"
-              onClick={clickHandler}
+              onClick={downVote}
               aria-label="minus-btn"
             >
-              <IconMinus />
+            <IconMinus />
             </button>
           </div>
           <div className="comment--btn">

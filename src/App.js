@@ -35,6 +35,29 @@ const App = () => {
       : document.body.classList.remove("overflow--hidden");
   }, [comments, deleteModalState]);
 
+  // update score
+  let updateScore = (score, id, type) => {
+    let updatedComments = [...comments];
+
+    if (type == "comment") {
+      updatedComments.map((data) => {
+        if (data.id == id) {
+          // console.log(data.score, score)
+          data.score = score;
+        }
+      })
+    } else if (type == 'reply') {
+      updatedComments.forEach((comment) => {
+        comment.replies.map((data) => {
+          if (data.id == id) {
+            data.score = score;
+          }
+        })
+      })
+    }
+    updateComments(updatedComments);
+  }
+
   // add comments
   let addComments = (newComment) => {
     let updatedComments = [...comments, newComment];
@@ -100,6 +123,7 @@ const App = () => {
         <Comment
           key={data.id}
           commentData={data}
+          updateScore={updateScore}
           updateReplies={updateReplies}
           editComment={editComment}
           commentDelete={commentDelete}
