@@ -40,15 +40,14 @@ const App = () => {
     let updatedComments = [...comments];
 
     if (type === "comment") {
-      updatedComments.map((data) => {
+      updatedComments.forEach((data) => {
         if (data.id === id) {
-          // console.log(data.score, score)
           data.score = score;
         }
       })
     } else if (type === 'reply') {
       updatedComments.forEach((comment) => {
-        comment.replies.map((data) => {
+        comment.replies.forEach((data) => {
           if (data.id === id) {
             data.score = score;
           }
@@ -67,7 +66,7 @@ const App = () => {
   // add replies
   let updateReplies = (replies, id) => {
     let updatedComments = [...comments];
-    updatedComments.map((data) => {
+    updatedComments.forEach((data) => {
       if (data.id === id) {
         data.replies = [...replies];
       }
@@ -80,14 +79,14 @@ const App = () => {
     let updatedComments = [...comments];
 
     if (type === "comment") {
-      updatedComments.map((data) => {
+      updatedComments.forEach((data) => {
         if (data.id === id) {
           data.content = content;
         }
       });
     } else if (type === "reply") {
       updatedComments.forEach((comment) => {
-        comment.replies.map((data) => {
+        comment.replies.forEach((data) => {
           if (data.id === id) {
             data.content = content;
           }

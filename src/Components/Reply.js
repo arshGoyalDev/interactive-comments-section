@@ -33,7 +33,7 @@ let Reply = ({
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
     localStorage.setItem('voteState', vote);
-  }, [differenceInTime]);
+  }, [differenceInTime, commentPostedTime]);
 
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
