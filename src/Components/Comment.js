@@ -17,7 +17,6 @@ let Comment = ({
   commentDelete,
   setDeleteModalState,
 }) => {
-
   const [replying, setReplying] = useState(false);
   const [time, setTime] = useState("");
   const [vote, setVoted] = useState(false);
@@ -59,7 +58,7 @@ let Comment = ({
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-    localStorage.setItem('voteState', vote);
+    localStorage.setItem("voteState", vote);
   }, [differenceInTime, vote]);
 
   setInterval(() => {
@@ -74,16 +73,16 @@ let Comment = ({
       updateScore(n, commentData.id, "comment");
       setVoted(true);
     }
-  }
+  };
 
   let downVote = () => {
     if (vote === true) {
       let n = score - 1;
       setScore(n);
-      updateScore(n, commentData.id, 'comment');
+      updateScore(n, commentData.id, "comment");
       setVoted(false);
-   }
-  }
+    }
+  };
 
   // adding reply
   let counter = false;
@@ -129,11 +128,7 @@ let Comment = ({
     >
       <div className="comment">
         <div className="comment--votes">
-          <button
-            className="plus-btn"
-            onClick={upVote}
-            aria-label="plus-btn"
-          >
+          <button className="plus-btn" onClick={upVote} aria-label="plus-btn">
             <IconPlus />
           </button>
           <div className="votes-counter">{score}</div>
@@ -200,12 +195,8 @@ let Comment = ({
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
-            <button
-              className="plus-btn"
-              onClick={upVote}
-              aria-label="plus-btn"
-            >
-            <IconPlus />
+            <button className="plus-btn" onClick={upVote} aria-label="plus-btn">
+              <IconPlus />
             </button>
             <div className="votes-counter">{score}</div>
             <button
@@ -213,7 +204,7 @@ let Comment = ({
               onClick={downVote}
               aria-label="minus-btn"
             >
-            <IconMinus />
+              <IconMinus />
             </button>
           </div>
           <div className="comment--btn">

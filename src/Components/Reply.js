@@ -32,7 +32,7 @@ let Reply = ({
 
   useEffect(() => {
     setTime(commentPostedTime(differenceInTime));
-    localStorage.setItem('voteState', vote);
+    localStorage.setItem("voteState", vote);
   }, [differenceInTime, commentPostedTime, vote]);
 
   setInterval(() => {
@@ -47,16 +47,16 @@ let Reply = ({
       updateScore(n, commentData.id, "reply");
       setVoted(true);
     }
-  }
+  };
 
   let downVote = () => {
     if (vote === true) {
       let n = score - 1;
       setScore(n);
-      updateScore(n, commentData.id, 'reply');
+      updateScore(n, commentData.id, "reply");
       setVoted(false);
-   }
-  }
+    }
+  };
   // adding reply
   let counter = false;
   let showAddComment = () => {
@@ -118,11 +118,7 @@ let Reply = ({
     >
       <div className="comment">
         <div className="comment--votes">
-          <button
-            className="plus-btn"
-            onClick={upVote}
-            aria-label="plus-btn"
-          >
+          <button className="plus-btn" onClick={upVote} aria-label="plus-btn">
             <IconPlus />
           </button>
           <div className="votes-counter">{commentData.score}</div>
@@ -179,11 +175,7 @@ let Reply = ({
         </div>
         <div className="comment--footer">
           <div className="comment--votes">
-            <button
-              className="plus-btn"
-              onClick={upVote}
-              aria-label="plus-btn"
-            >
+            <button className="plus-btn" onClick={upVote} aria-label="plus-btn">
               <IconPlus />
             </button>
             <div className="votes-counter">{commentData.score}</div>

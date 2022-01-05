@@ -44,18 +44,18 @@ const App = () => {
         if (data.id === id) {
           data.score = score;
         }
-      })
-    } else if (type === 'reply') {
+      });
+    } else if (type === "reply") {
       updatedComments.forEach((comment) => {
         comment.replies.forEach((data) => {
           if (data.id === id) {
             data.score = score;
           }
-        })
-      })
+        });
+      });
     }
     updateComments(updatedComments);
-  }
+  };
 
   // add comments
   let addComments = (newComment) => {
