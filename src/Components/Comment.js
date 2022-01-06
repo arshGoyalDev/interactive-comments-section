@@ -61,6 +61,7 @@ let Comment = ({
     localStorage.setItem("voteState", vote);
   }, [differenceInTime, vote]);
 
+  // update time every 1min
   setInterval(() => {
     setTime(commentPostedTime(differenceInTime));
   }, 60000);
