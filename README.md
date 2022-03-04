@@ -4,8 +4,6 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 
 ![](./src/Assets/images/screenshot.png)
 
-<br>
-
 ## The challenge
 
 - Optimal layout for the app depending on their device's screen size.
