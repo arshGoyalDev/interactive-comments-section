@@ -2,8 +2,6 @@
 
 This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
-<br>
-
 ![](./src/Assets/images/screenshot.png)
 
 <br>
@@ -16,14 +14,10 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 - Up-vote and down-vote comments.
 - Tracks the time dynamically since the comment or reply was posted.
 
-<br>
-
 ## Links
 
-- [Solution URL](https://github.com/developingWeb/interactive-comments-section)
-- [Live Site URL](https://interactive-comments-section-developingweb.vercel.app)
-
-<br>
+- [Solution URL](https://github.com/arshWebDev/interactive-comments-section)
+- [Live Site URL](https://interactive-comments-section-nine.vercel.app)
 
 ## Built with
 
@@ -32,21 +26,15 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 
-<br>
-
 ## What I learned
 
- - I learned how to calculate the time between current time and given time.
-
-<br>
+- I learned how to calculate the time between current time and given time.
 
 ## Continued development
 
-- I still want to add the feature : 
+- I still want to add the feature :
   - which sort the comments the comment of the basis of their votes
-
-<br>
 
 ## Author
 
-- Frontend Mentor - [@developingWeb](https://www.frontendmentor.io/profile/developingWeb)
+- Frontend Mentor - [@arshWebDev](https://www.frontendmentor.io/profile/arshWebDev)
