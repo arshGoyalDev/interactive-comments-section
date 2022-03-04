@@ -90,12 +90,10 @@ const Comment = ({
               }}
             />
           )}
-          {editing ? (
+          {editing && (
             <button className="update-btn" onClick={updateComment}>
               update
             </button>
-          ) : (
-            ""
           )}
         </div>
         <CommentFooter
@@ -112,18 +110,14 @@ const Comment = ({
         />{" "}
       </div>
 
-      {replying ? (
+      {replying && (
         <AddComment
           buttonValue={"reply"}
           addComments={addReply}
           replyingTo={commentData.username}
         />
-      ) : (
-        ""
       )}
-      {commentData.replies === [] ? (
-        ""
-      ) : (
+      {commentData.replies !== [] && (
         <ReplyContainer
           key={commentData.replies.id}
           commentData={commentData.replies}
@@ -136,14 +130,12 @@ const Comment = ({
         />
       )}
 
-      {deleting ? (
+      {deleting && (
         <DeleteModal
           setDeleting={setDeleting}
           deleteComment={deleteComment}
           setDeleteModalState={setDeleteModalState}
         />
-      ) : (
-        ""
       )}
     </div>
   );

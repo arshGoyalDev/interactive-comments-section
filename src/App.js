@@ -7,17 +7,10 @@ const App = () => {
   const [comments, updateComments] = useState([]);
   const [deleteModalState, setDeleteModalState] = useState(false);
 
-  const getData = () => {
-    fetch("./data/data.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        updateComments(data.comments);
-      });
+  const getData = async () => {
+    const res = await fetch("./data/data.json");
+    const data = await res.json();
+    updateComments(data.comments);
   };
 
   useEffect(() => {
@@ -116,10 +109,10 @@ const App = () => {
 
   return (
     <main className="App">
-      {comments.map((data) => (
+      {comments.map((comment) => (
         <Comment
-          key={data.id}
-          commentData={data}
+          key={comment.id}
+          commentData={comment}
           updateScore={updateScore}
           updateReplies={updateReplies}
           editComment={editComment}

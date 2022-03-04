@@ -98,12 +98,10 @@ const Reply = ({
           />
 
           {commentContent()}
-          {editing ? (
+          {editing && (
             <button className="update-btn" onClick={updateComment}>
               update
             </button>
-          ) : (
-            ""
           )}
         </div>
         <CommentFooter
@@ -120,32 +118,28 @@ const Reply = ({
         />
       </div>
 
-      {replying ? (
+      {replying && (
         <AddComment
           buttonValue={"reply"}
           addComments={addReply}
           replyingTo={commentData.username}
         />
-      ) : (
-        ""
       )}
-      {commentData.replies.map((data) => (
+      {commentData.replies.map((reply) => (
         <Reply
-          key={data.id}
-          commentData={data}
+          key={reply.id}
+          commentData={reply}
           commentPostedTime={commentPostedTime}
           addReply={addReply}
         />
       ))}
 
-      {deleting ? (
+      {deleting && (
         <DeleteModal
           setDeleting={setDeleting}
           deleteComment={deleteReply}
           setDeleteModalState={setDeleteModalState}
         />
-      ) : (
-        ""
       )}
     </div>
   );
