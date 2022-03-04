@@ -3,9 +3,7 @@ import { useState } from "react";
 import "./Styles/AddComment.scss";
 
 const AddComment = ({ buttonValue, addComments, replyingTo }) => {
-  const [replyingToUser, setReplyingToUser] = useState(
-    replyingTo ? `@${replyingTo}, ` : ""
-  );
+  const replyingToUser = replyingTo ? `@${replyingTo}, ` : "";
   const [comment, setComment] = useState("");
 
   const clickHandler = () => {
