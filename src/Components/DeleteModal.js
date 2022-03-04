@@ -1,12 +1,12 @@
 import "./Styles/DeleteModal.scss";
 
-let DeleteModal = ({ setDeleting, deleteComment, setDeleteModalState }) => {
-  let cancelDelete = () => {
+const DeleteModal = ({ setDeleting, deleteComment, setDeleteModalState }) => {
+  const cancelDelete = () => {
     setDeleting(false);
     setDeleteModalState(false);
   };
 
-  let deleteBtnClick = () => {
+  const deleteBtnClick = () => {
     deleteComment();
     setDeleteModalState(false);
   };

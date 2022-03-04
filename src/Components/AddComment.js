@@ -1,19 +1,19 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import "./Styles/AddComment.scss";
 
 const AddComment = ({ buttonValue, addComments, replyingTo }) => {
-  const [comment, setComment] = useState(replyingTo ? `@${replyingTo}, ` : "");
+  const [replyingToUser, setReplyingToUser] = useState(
+    replyingTo ? `@${replyingTo}, ` : ""
+  );
+  const [comment, setComment] = useState("");
 
-  let changeHandler = (e) => {
-    setComment(e.target.value);
-  };
-
-  let clickHandler = () => {
+  const clickHandler = () => {
     if (comment === "" || comment === " ") return;
 
-    let newComment = {
+    const newComment = {
       id: Math.floor(Math.random() * 100) + 5,
-      content: comment,
+      content: replyingToUser + comment,
       createdAt: new Date(),
       score: 0,
       username: "juliusomo",
@@ -31,8 +31,12 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
       <textarea
         className="comment-input"
         placeholder="Add a comment"
-        value={comment}
-        onChange={changeHandler}
+        value={replyingToUser + comment}
+        onChange={(e) => {
+          setComment(
+            e.target.value.replace(replyingTo ? `@${replyingTo}, ` : "", "")
+          );
+        }}
       />
       <div className="send-btn-container">
         <div className="profile-pic"></div>

@@ -1,7 +1,6 @@
-import React from "react";
 import Reply from "./Reply";
 
-let ReplyContainer = ({
+const ReplyContainer = ({
   commentData,
   updateScore,
   commentPostedTime,
