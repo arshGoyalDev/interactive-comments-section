@@ -4,20 +4,22 @@ import "./Styles/AddComment.scss";
 
 const AddComment = ({ buttonValue, addComments, replyingTo }) => {
   const replyingToUser = replyingTo ? `@${replyingTo}, ` : "";
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState(replyingToUser);
 
   const clickHandler = () => {
     if (comment === "" || comment === " ") return;
 
     const newComment = {
       id: Math.floor(Math.random() * 100) + 5,
-      content: replyingToUser + comment,
+      content: replyingToUser + comment.replace(replyingToUser, ""),
       createdAt: new Date(),
       score: 0,
       username: "juliusomo",
       currentUser: true,
       replies: [],
     };
+
+    console.log(replyingTo);
 
     addComments(newComment);
     setComment("");
@@ -29,11 +31,9 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
       <textarea
         className="comment-input"
         placeholder="Add a comment"
-        value={replyingToUser + comment}
+        value={comment}
         onChange={(e) => {
-          setComment(
-            e.target.value.replace(replyingTo ? `@${replyingTo}, ` : "", "")
-          );
+          setComment(e.target.value);
         }}
       />
       <div className="send-btn-container">
