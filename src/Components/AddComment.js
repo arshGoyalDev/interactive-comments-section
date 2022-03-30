@@ -19,8 +19,6 @@ const AddComment = ({ buttonValue, addComments, replyingTo }) => {
       replies: [],
     };
 
-    console.log(replyingTo);
-
     addComments(newComment);
     setComment("");
   };
