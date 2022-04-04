@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, } from "react";
 
 import "./Styles/Comment.scss";
 
@@ -10,7 +10,6 @@ import CommentFooter from "./CommentFooter";
 
 const Reply = ({
   commentData,
-  commentPostedTime,
   updateScore,
   addNewReply,
   editComment,
@@ -18,22 +17,12 @@ const Reply = ({
   setDeleteModalState,
 }) => {
   const [replying, setReplying] = useState(false);
-  const [time, setTime] = useState("");
   const [vote, setVoted] = useState(false);
   const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
 
-  // get time from comment posted
-  const createdAt = new Date(commentData.createdAt);
-  const today = new Date();
-  var differenceInTime = today.getTime() - createdAt.getTime();
-
-  useEffect(() => {
-    setTime(commentPostedTime(differenceInTime));
-    localStorage.setItem("voteState", vote);
-  }, [differenceInTime, commentPostedTime, vote]);
 
   // adding reply
   const addReply = (newReply) => {
@@ -94,7 +83,7 @@ const Reply = ({
             setDeleting={setDeleting}
             setDeleteModalState={setDeleteModalState}
             setEditing={setEditing}
-            time={time}
+            // time={time}
           />
 
           {commentContent()}
@@ -129,7 +118,6 @@ const Reply = ({
         <Reply
           key={reply.id}
           commentData={reply}
-          commentPostedTime={commentPostedTime}
           addReply={addReply}
         />
       ))}

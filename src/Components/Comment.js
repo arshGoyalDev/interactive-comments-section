@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import "./Styles/Comment.scss";
 
 import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 import DeleteModal from "./DeleteModal";
+
 import CommentVotes from "./CommentVotes";
 import CommentHeader from "./CommentHeader";
 import CommentFooter from "./CommentFooter";
-
-import { commentPostedTime } from "../utils";
 
 const Comment = ({
   commentData,
@@ -20,22 +19,11 @@ const Comment = ({
   setDeleteModalState,
 }) => {
   const [replying, setReplying] = useState(false);
-  const [time, setTime] = useState("");
   const [vote, setVoted] = useState(false);
   const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
-
-  // get time from comment posted
-  const createdAt = new Date(commentData.createdAt);
-  const today = new Date();
-  const differenceInTime = today.getTime() - createdAt.getTime();
-
-  useEffect(() => {
-    setTime(commentPostedTime(differenceInTime));
-    localStorage.setItem("voteState", vote);
-  }, [differenceInTime, vote]);
 
   const addReply = (newReply) => {
     const replies = [...commentData.replies, newReply];
@@ -77,7 +65,7 @@ const Comment = ({
             setDeleting={setDeleting}
             setDeleteModalState={setDeleteModalState}
             setEditing={setEditing}
-            time={time}
+            // time={time}
           />
           {!editing ? (
             <div className="comment-content">{commentData.content}</div>
@@ -122,7 +110,6 @@ const Comment = ({
           key={commentData.replies.id}
           commentData={commentData.replies}
           updateScore={updateScore}
-          commentPostedTime={commentPostedTime}
           addReply={addReply}
           editComment={editComment}
           deleteComment={deleteComment}
