@@ -27,6 +27,10 @@
 
       .plus-btn,
       .minus-btn {
+        display: grid;
+        place-items: center;
+        width: 20px;
+        height: 20px;       
         background: transparent;
         border: 0;
         cursor: pointer;
@@ -34,11 +38,6 @@
         &:hover svg path {
           fill: $moderate-blue;
         }
-      }
-
-      .minus-btn {
-        margin-top: -6px;
-        margin-left: 0.5px;
       }
 
       .votes-counter {
@@ -162,8 +161,10 @@
           margin-inline: 15px;
         }
 
+        .plus-btn,
         .minus-btn {
-          height: 25px;
+          width: 30px;
+          height: 30px;
         }
       }
     }
