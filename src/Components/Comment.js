@@ -56,6 +56,7 @@ const Comment = ({
         <div className="comment--body">
           <CommentHeader
             commentData={commentData}
+            replying={replying}
             setReplying={setReplying}
             setDeleting={setDeleting}
             setDeleteModalState={setDeleteModalState}

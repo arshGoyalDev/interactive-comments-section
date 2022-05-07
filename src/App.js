@@ -27,14 +27,14 @@ const App = () => {
   }, [comments, deleteModalState]);
 
   // update score
-  let updateScore = (score, id, type, method) => {
+  const updateScore = (score, id, type, method) => {
     let updatedComments = [...comments];
 
     if (type === "comment") {
       updatedComments.forEach((data) => {
         if (data.id === id) {
           data.score = score;
-          data.voted = method === "upvote" ? true : false
+          data.voted = method === "upvote" ? true : false;
         }
       });
     } else if (type === "reply") {
@@ -42,7 +42,7 @@ const App = () => {
         comment.replies.forEach((data) => {
           if (data.id === id) {
             data.score = score;
-            data.voted = method === "upvote" ? true : false
+            data.voted = method === "upvote" ? true : false;
           }
         });
       });
@@ -51,13 +51,13 @@ const App = () => {
   };
 
   // add comments
-  let addComments = (newComment) => {
-    let updatedComments = [...comments, newComment];
+  const addComments = (newComment) => {
+    const updatedComments = [...comments, newComment];
     updateComments(updatedComments);
   };
 
   // add replies
-  let updateReplies = (replies, id) => {
+  const updateReplies = (replies, id) => {
     let updatedComments = [...comments];
     updatedComments.forEach((data) => {
       if (data.id === id) {
@@ -68,7 +68,7 @@ const App = () => {
   };
 
   // edit comment
-  let editComment = (content, id, type) => {
+  const editComment = (content, id, type) => {
     let updatedComments = [...comments];
 
     if (type === "comment") {

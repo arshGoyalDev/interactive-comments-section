@@ -6,6 +6,7 @@ import CommentBtn from "./CommentBtn";
 
 const CommentHeader = ({
   commentData,
+  replying,
   setReplying,
   setDeleting,
   setDeleteModalState,
@@ -35,6 +36,7 @@ const CommentHeader = ({
       <div className="comment-posted-time">{`${time} ago`}</div>
       <CommentBtn
         commentData={commentData}
+        replying={replying}
         setReplying={setReplying}
         setDeleting={setDeleting}
         setDeleteModalState={setDeleteModalState}

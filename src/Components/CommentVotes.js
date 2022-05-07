@@ -3,11 +3,7 @@ import { useState } from "react";
 import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
 
-const CommentVotes = ({
-  updateScore,
-  commentData,
-  type,
-}) => {
+const CommentVotes = ({ updateScore, commentData, type }) => {
   const [score, setScore] = useState(commentData.score);
   const [voted, setVoted] = useState(commentData.voted ?? false);
   let upVote = () => {
