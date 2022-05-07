@@ -12,6 +12,7 @@ const CommentFooter = ({
   setDeleting,
   setDeleteModalState,
   setEditing,
+  type
 }) => {
   return (
     <div className="comment--footer">
@@ -22,6 +23,7 @@ const CommentFooter = ({
         setScore={setScore}
         updateScore={updateScore}
         commentData={commentData}
+        type={type}
       />
 
       <CommentBtn

@@ -75,6 +75,7 @@ const Reply = ({
           setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
+          type="reply"
         />
         <div className="comment--body">
           <CommentHeader
@@ -104,6 +105,7 @@ const Reply = ({
           setDeleting={setDeleting}
           setDeleteModalState={setDeleteModalState}
           setEditing={setEditing}
+          type="reply"
         />
       </div>
 

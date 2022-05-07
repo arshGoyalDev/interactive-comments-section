@@ -57,6 +57,7 @@ const Comment = ({
           setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
+          type="comment"
         />
         <div className="comment--body">
           <CommentHeader
@@ -95,6 +96,7 @@ const Comment = ({
           setDeleting={setDeleting}
           setDeleteModalState={setDeleteModalState}
           setEditing={setEditing}
+          type="comment"
         />{" "}
       </div>
 

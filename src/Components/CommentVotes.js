@@ -8,13 +8,14 @@ const CommentVotes = ({
   setScore,
   updateScore,
   commentData,
+  type
 }) => {
   // up vote and down vote
   let upVote = () => {
     if (vote === false) {
       let n = score + 1;
       setScore(n);
-      updateScore(n, commentData.id, "reply");
+      updateScore(n, commentData.id, type);
       setVoted(true);
     }
   };
@@ -23,7 +24,7 @@ const CommentVotes = ({
     if (vote === true) {
       let n = score - 1;
       setScore(n);
-      updateScore(n, commentData.id, "reply");
+      updateScore(n, commentData.id, type);
       setVoted(false);
     }
   };
