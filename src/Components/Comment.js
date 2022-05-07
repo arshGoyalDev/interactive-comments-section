@@ -6,9 +6,7 @@ import AddComment from "./AddComment";
 import ReplyContainer from "./ReplyContainer";
 import DeleteModal from "./DeleteModal";
 
-import CommentVotes from "./CommentVotes";
-import CommentHeader from "./CommentHeader";
-import CommentFooter from "./CommentFooter";
+import { CommentHeader, CommentFooter, CommentVotes } from "./commentParts";
 
 const Comment = ({
   commentData,

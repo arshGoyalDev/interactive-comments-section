@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { commentPostedTime } from "../utils";
+import { commentPostedTime } from "../../utils";
 
 import CommentBtn from "./CommentBtn";
 
@@ -13,7 +13,6 @@ const CommentHeader = ({
   setEditing,
 }) => {
   const [time, setTime] = useState("");
-
   const createdAt = new Date(commentData.createdAt);
   const today = new Date();
 
@@ -24,7 +23,6 @@ const CommentHeader = ({
     }, 1000);
 
     return () => clearTimeout(timeout);
-
     // eslint-disable-next-line
   }, []);
 

@@ -4,9 +4,8 @@ import "./Styles/Comment.scss";
 
 import AddComment from "./AddComment";
 import DeleteModal from "./DeleteModal";
-import CommentVotes from "./CommentVotes";
-import CommentHeader from "./CommentHeader";
-import CommentFooter from "./CommentFooter";
+
+import { CommentHeader, CommentFooter, CommentVotes } from "./commentParts";
 
 const Reply = ({
   commentData,

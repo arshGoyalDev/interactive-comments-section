@@ -1,22 +1,17 @@
-import CommentVotes from "./CommentVotes";
-import CommentBtn from "./CommentBtn";
+import { CommentVotes, CommentBtn } from "./";
 
 const CommentFooter = ({
-  // score,
-  // setScore,
   updateScore,
   commentData,
   setReplying,
   setDeleting,
   setDeleteModalState,
   setEditing,
-  type
+  type,
 }) => {
   return (
     <div className="comment--footer">
       <CommentVotes
-        // score={score}
-        // setScore={setScore}
         updateScore={updateScore}
         commentData={commentData}
         type={type}
