@@ -32,7 +32,7 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Continued development
 
 - I still want to add the feature :
-  - which sort the comments the comment of the basis of their votes
+  - which sorts the comments the comment of the basis of their votes
 
 ## Author
 
