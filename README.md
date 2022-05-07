@@ -37,3 +37,4 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Author
 
 - Frontend Mentor - [@arshWebDev](https://www.frontendmentor.io/profile/arshWebDev)
+- Twitter - [@arshWebDev](https://twitter.com);
