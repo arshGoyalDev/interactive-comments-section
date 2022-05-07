@@ -2,8 +2,8 @@ import CommentVotes from "./CommentVotes";
 import CommentBtn from "./CommentBtn";
 
 const CommentFooter = ({
-  score,
-  setScore,
+  // score,
+  // setScore,
   updateScore,
   commentData,
   setReplying,
@@ -15,8 +15,8 @@ const CommentFooter = ({
   return (
     <div className="comment--footer">
       <CommentVotes
-        score={score}
-        setScore={setScore}
+        // score={score}
+        // setScore={setScore}
         updateScore={updateScore}
         commentData={commentData}
         type={type}

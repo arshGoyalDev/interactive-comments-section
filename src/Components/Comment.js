@@ -19,7 +19,6 @@ const Comment = ({
   setDeleteModalState,
 }) => {
   const [replying, setReplying] = useState(false);
-  const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
@@ -50,8 +49,8 @@ const Comment = ({
     >
       <div className="comment">
         <CommentVotes
-          score={score}
-          setScore={setScore}
+          // score={score}
+          // setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
           type="comment"
@@ -82,8 +81,6 @@ const Comment = ({
           )}
         </div>
         <CommentFooter
-          score={score}
-          setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
           setReplying={setReplying}

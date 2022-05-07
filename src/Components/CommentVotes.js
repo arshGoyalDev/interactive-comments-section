@@ -4,16 +4,14 @@ import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
 
 const CommentVotes = ({
-  score,
-  setScore,
+  // score,
+  // setScore,
   updateScore,
   commentData,
   type,
 }) => {
-  const getVoteStatus = () => {
-    return commentData.voted ?? false;
-  };
-  const [voted, setVoted] = useState(getVoteStatus);
+  const [score, setScore] = useState(commentData.score);
+  const [voted, setVoted] = useState(commentData.voted ?? false);
   let upVote = () => {
     if (commentData.currentUser) return;
     if (voted === false) {
