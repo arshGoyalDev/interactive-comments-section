@@ -1,9 +1,9 @@
 @use "variables" as *;
 @use "mixins" as *;
 
-/* ------------------- */
-/* reset */
-/* ------------------- */
+// ------------------- //
+// reset //
+// ------------------- //
 
 *,
 *::before,
@@ -26,9 +26,9 @@ textarea {
   font-size: inherit;
 }
 
-/* ------------------- */
-/* body */
-/* ------------------- */
+// ------------------- //
+// body //
+// ------------------- //
 
 html {
   @include support("scrollbar-width: thin") {
@@ -51,13 +51,14 @@ body {
   }
 
   &::-webkit-scrollbar-thumb {
+    border-radius: 50px;
     background: $grayish-blue;
   }
 }
 
-/* ------------------- */
-/* utility classes */
-/* ------------------- */
+// ------------------- //
+// utility classes //
+// ------------------- //
 
 .display--none {
   display: none !important;
