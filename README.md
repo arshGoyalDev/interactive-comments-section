@@ -11,8 +11,8 @@
 - tracks the time dynamically since the comment or reply was posted.
 
 ### Information 
-- this is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9).
-- by [Frontend Mentor](https://www.frontendmentor.io)
+  - this is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9).
+  - by [Frontend Mentor](https://www.frontendmentor.io)
 
 ## Links
 
