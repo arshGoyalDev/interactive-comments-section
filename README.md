@@ -22,6 +22,7 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 - CSS custom properties
 - Flex-box
 - Mobile-first workflow
+- [SCSS](https://sass-lang.com) - CSS Preprocessor
 - [React](https://reactjs.org/) - JS library
 
 ## What I learned
