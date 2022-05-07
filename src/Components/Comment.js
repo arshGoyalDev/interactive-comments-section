@@ -49,8 +49,6 @@ const Comment = ({
     >
       <div className="comment">
         <CommentVotes
-          // score={score}
-          // setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
           type="comment"

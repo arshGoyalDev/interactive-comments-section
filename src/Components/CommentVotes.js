@@ -4,8 +4,6 @@ import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
 
 const CommentVotes = ({
-  // score,
-  // setScore,
   updateScore,
   commentData,
   type,

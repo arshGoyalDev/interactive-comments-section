@@ -1,4 +1,4 @@
-import { useState, } from "react";
+import { useState } from "react";
 
 import "./Styles/Comment.scss";
 
@@ -17,11 +17,9 @@ const Reply = ({
   setDeleteModalState,
 }) => {
   const [replying, setReplying] = useState(false);
-  // const [score, setScore] = useState(commentData.score);
   const [editing, setEditing] = useState(false);
   const [content, setContent] = useState(commentData.content);
   const [deleting, setDeleting] = useState(false);
-
 
   // adding reply
   const addReply = (newReply) => {
@@ -68,8 +66,6 @@ const Reply = ({
     >
       <div className="comment">
         <CommentVotes
-          // score={score}
-          // setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
           type="reply"
@@ -91,8 +87,6 @@ const Reply = ({
           )}
         </div>
         <CommentFooter
-          // score={score}
-          // setScore={setScore}
           updateScore={updateScore}
           commentData={commentData}
           setReplying={setReplying}
@@ -111,11 +105,7 @@ const Reply = ({
         />
       )}
       {commentData.replies.map((reply) => (
-        <Reply
-          key={reply.id}
-          commentData={reply}
-          addReply={addReply}
-        />
+        <Reply key={reply.id} commentData={reply} addReply={addReply} />
       ))}
 
       {deleting && (
