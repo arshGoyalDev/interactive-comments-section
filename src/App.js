@@ -27,13 +27,14 @@ const App = () => {
   }, [comments, deleteModalState]);
 
   // update score
-  let updateScore = (score, id, type) => {
+  let updateScore = (score, id, type, method) => {
     let updatedComments = [...comments];
 
     if (type === "comment") {
       updatedComments.forEach((data) => {
         if (data.id === id) {
           data.score = score;
+          data.voted = method === "upvote" ? true : false
         }
       });
     } else if (type === "reply") {
@@ -41,6 +42,7 @@ const App = () => {
         comment.replies.forEach((data) => {
           if (data.id === id) {
             data.score = score;
+            data.voted = method === "upvote" ? true : false
           }
         });
       });

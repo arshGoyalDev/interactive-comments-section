@@ -1,30 +1,37 @@
+import { useState } from "react";
+
 import { ReactComponent as IconPlus } from "../Assets/images/icon-plus.svg";
 import { ReactComponent as IconMinus } from "../Assets/images/icon-minus.svg";
 
 const CommentVotes = ({
-  vote,
-  setVoted,
+  // vote,
+  // setVoted,
   score,
   setScore,
   updateScore,
   commentData,
-  type
+  type,
 }) => {
-  // up vote and down vote
+  const getVoteStatus = () => {
+    return commentData.voted ?? false;
+  };
+  const [voted, setVoted] = useState(getVoteStatus);
   let upVote = () => {
-    if (vote === false) {
+    if (commentData.currentUser) return;
+    if (voted === false) {
       let n = score + 1;
       setScore(n);
-      updateScore(n, commentData.id, type);
+      updateScore(n, commentData.id, type, "upvote");
       setVoted(true);
     }
   };
 
   let downVote = () => {
-    if (vote === true) {
+    if (commentData.currentUser) return;
+    if (voted === true) {
       let n = score - 1;
       setScore(n);
-      updateScore(n, commentData.id, type);
+      updateScore(n, commentData.id, type, "downvote");
       setVoted(false);
     }
   };
