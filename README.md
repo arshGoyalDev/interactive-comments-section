@@ -1,16 +1,20 @@
 # Interactive comments section
 
-This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
+This is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9).
 
 ![](./src/Assets/images/screenshot.png)
 
 ## The challenge
 
-- Optimal layout for the app depending on their device's screen size.
-- Hover states for all interactive elements on the page.
-- Create, Read, Update, and Delete comments and replies.
-- Up-vote and down-vote comments.
-- Tracks the time dynamically since the comment or reply was posted.
+- optimal layout for the app depending on their device's screen size.
+- hover states for all interactive elements on the page.
+- create, Read, Update, and Delete comments and replies.
+- up-vote and down-vote comments.
+- tracks the time dynamically since the comment or reply was posted.
+
+### Information 
+- this is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9).
+- by [Frontend Mentor](https://www.frontendmentor.io)
 
 ## Links
 
@@ -37,4 +41,4 @@ This is a solution to the [Interactive comments section challenge on Frontend Me
 ## Author
 
 - Frontend Mentor - [@arshWebDev](https://www.frontendmentor.io/profile/arshWebDev)
-- Twitter - [@arshWebDev](https://twitter.com);
+- Twitter - [@arshWebDev](https://twitter.com)
