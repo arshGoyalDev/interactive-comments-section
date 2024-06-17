@@ -14,10 +14,6 @@
 - this is a solution to the [Interactive comments section challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/interactive-comments-section-iG1RugEG9).
 - by [Frontend Mentor](https://www.frontendmentor.io)
 
-## Links
-
-- [Solution URL](https://github.com/arshWebDev/interactive-comments-section)
-- [Live Site URL](https://interactive-comments-section-nine.vercel.app)
 
 ## Built with
 
@@ -38,5 +34,5 @@
 
 ## Author
 
-- Frontend Mentor - [@arshWebDev](https://www.frontendmentor.io/profile/arshWebDev)
-- Twitter - [@arshWebDev](https://twitter.com)
+- Frontend Mentor - [@arshGoyalDev](https://www.frontendmentor.io/profile/arshGoyalDev)
+- Twitter - [@arshGoyalDDev](https://twitter.com/arshGoyalDev)
